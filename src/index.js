@@ -1,3 +1,4 @@
+require("dotenv");
 import React from "react";
 import ReactDOM from "react-dom";
 import MainView from "./MainView";
