@@ -1,38 +1,28 @@
 import React from "react";
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
-
-const Header = () => {
-  return (
-    <div css={css``}>
-      <h1>Well the Main View is running!</h1>
-    </div>
-  );
-};
-
-const LoadingThing = () => {
-  return (
-    <div css={css``}>
-      <span
-        css={css`
-          font-size: 2em;
-        `}
-      >
-        Loading...... ... ...
-      </span>
-    </div>
-  );
-};
+import Error from "./Error";
+import Header from "./Header";
+import LoadingThing from "./LoadingThing";
 
 class MainView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { loading: true };
+    this.state = { loading: true, ready: false, error: null };
+  }
+
+  componentDidMount() {
+    // Make API Call here!
   }
 
   render() {
-    return <div>{this.state.loading ? <LoadingThing /> : <Header />}</div>;
+    const { error, loading, ready } = this.state;
+    return (
+      <div>
+        {ready ? <Header /> : null}
+        {error ? <Error error={error} /> : null}
+        {loading ? <LoadingThing /> : null}
+      </div>
+    );
   }
 }
 
