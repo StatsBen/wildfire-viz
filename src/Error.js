@@ -2,10 +2,11 @@ require("react");
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 
-const Error = () => {
+const Error = props => {
   return (
     <div css={css``}>
-      <span css={css``}>Uh Oh! Couldn&#39t connect to the database :(</span>
+      <h4 css={css``}>{`Uh Oh! Couldn't connect to the database :(`}</h4>
+      <h4>{`message: ${props.error.message}`}</h4>
     </div>
   );
 };
