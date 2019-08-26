@@ -1,0 +1,19 @@
+{
+  "name": "wildfire-viz",
+  "version": "0.9.9",
+  "description": "A front-end exploration and viz tool for sifting through 1.88million records of wildfires between 1992 and 2015.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StatsBen/wildfire-viz.git"
+  },
+  "author": "Ben Clark - August 2019",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/StatsBen/wildfire-viz/issues"
+  },
+  "homepage": "https://github.com/StatsBen/wildfire-viz#readme"
+}
