@@ -17,17 +17,13 @@ class VizContainer extends React.Component {
       loading: true,
       ready: false,
       error: null,
-      fires: {},
-      year: null, // demo default
-      date: new Date("1999/08/15"), // demo default
-      state: null, // demo default
-      urlBase: null
+      fires: {}
     };
   }
 
   handleError = (msg, o) => {
     let error = { message: msg, otherCrap: o };
-    this.setState({ error, loading: false });
+    this.setState({ error, loading: false, ready: false });
   };
 
   updateFires = async (year, res) => {
@@ -36,12 +32,13 @@ class VizContainer extends React.Component {
     // console.log(data);
     this.setState(state => {
       state.fires[year.toString()] = data;
+      state.error = null;
       state.loading = false;
       state.ready = true;
     });
   };
 
-  getFires = () => {
+  getFires = async () => {
     for (let y = 1992; y <= 2015; y++) {
       let successCB = (y, res) => this.updateFires(y, res);
       let errorCB = (y, err) => this.handleError("Couldn't get year " + y, err);
@@ -50,6 +47,7 @@ class VizContainer extends React.Component {
   };
 
   componentDidMount() {
+    this.setState({ loading: false });
     this.getFires();
   }
 
@@ -82,16 +80,10 @@ class VizContainer extends React.Component {
     const { error, loading, ready, fires } = this.state;
     return (
       <this.container>
-        {ready ? (
-          <div>
-            <Header />
-            <NavBar fires={fires} />
-          </div>
-        ) : null}
-
+        {ready ? <Header /> : null}
         {error ? <Error error={error} /> : null}
-
         {loading ? <LoadingThing /> : null}
+        {!loading ? <NavBar fires={fires} /> : null}
       </this.container>
     );
   }
