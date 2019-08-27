@@ -1,8 +1,13 @@
 import React from "react";
 import Error from "./Error";
 import Header from "./Header";
+import NavBar from "./NavBar";
 import LoadingThing from "./LoadingThing";
-import { dateTools } from "../utils";
+// import { dateTools } from "../utils";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
+import { fireService } from "../fire-service";
+import { sizes } from "../styles";
 
 class VizContainer extends React.Component {
   constructor(props) {
@@ -12,6 +17,7 @@ class VizContainer extends React.Component {
       loading: true,
       ready: false,
       error: null,
+      fires: {},
       year: null, // demo default
       date: new Date("1999/08/15"), // demo default
       state: null, // demo default
@@ -24,47 +30,66 @@ class VizContainer extends React.Component {
     this.setState({ error, loading: false });
   };
 
+  updateFires = (year, res) => {
+    this.setState(state => {
+      state.fires[year.toString()] = res.json();
+      state.loading = false;
+      state.ready = true;
+    });
+  };
+
   getFires = () => {
-    const { year, date, state, urlBase } = this.state;
-
-    if (!urlBase) this.handleError("URL Base is not defined!", null);
-
-    let req = "fires/";
-
-    if (date) req += "burningOn=" + dateTools.formatDateForQuery(date);
-    if (state); // deal with this later...
-    if (year); // deal with this later...
-
-    console.log("Getting fires from: " + urlBase + req);
-
-    fetch(urlBase + req).then(
-      res => {
-        console.log("Success!!");
-        console.log(res);
-        this.setState({ fires: res.json(), ready: true, loading: false });
-      },
-      err => {
-        this.handleError("Error getting data from database!", err);
-      }
-    );
+    for (let y = 1992; y <= 2015; y++) {
+      let successCB = (y, res) => this.updateFires(y, res);
+      let errorCB = (y, err) => this.handleError("Couldn't get year " + y, err);
+      fireService.getYear(y, successCB, errorCB);
+    }
   };
 
   componentDidMount() {
-    const isDev = process.env.NODE_ENV == "development";
-    const devURL = "http://localhost:3001/";
-    const realURL = null; //<- TODO make this real at some point...
-    const urlBase = isDev ? devURL : realURL;
-    this.setState({ urlBase }, this.getFires);
+    this.getFires();
   }
 
-  render() {
-    const { error, loading, ready } = this.state;
+  container = props => {
     return (
-      <div>
-        {ready ? <Header /> : null}
-        {error ? <Error error={error} /> : null}
-        {loading ? <LoadingThing /> : null}
+      <div
+        css={css`
+          margin: 1em 0 1em 0;
+          text-align: center;
+        `}
+      >
+        <div
+          css={css`
+            display: inline-block;
+            width: 90%;
+            max-width: 50em;
+            min-width: 20em;
+            padding: 1em;
+            border: thin solid #bbbbbb;
+            border-radius: ${sizes.borderRadius};
+          `}
+        >
+          {props.children}
+        </div>
       </div>
+    );
+  };
+
+  render() {
+    const { error, loading, ready, fires } = this.state;
+    return (
+      <this.container>
+        {ready ? (
+          <div>
+            <Header />
+            <NavBar fires={fires} />
+          </div>
+        ) : null}
+
+        {error ? <Error error={error} /> : null}
+
+        {loading ? <LoadingThing /> : null}
+      </this.container>
     );
   }
 }
