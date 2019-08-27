@@ -8,8 +8,9 @@
 
 const colors = {
   black: "#050505",
-  white: "#fcfcfa",
-  charcoal: "#43484d"
+  bodycopy: "#535a61",
+  charcoal: "#43484d",
+  white: "#fefefc"
 };
 
 const fonts = {

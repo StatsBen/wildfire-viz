@@ -1,9 +1,9 @@
 :root {
   /* Colors */
   --black: #050505;
-  --white: #fefefc;
-  --charcoal: #43484d;
   --bodycopy: #535a61;
+  --charcoal: #43484d;
+  --white: #fefefc;
 
   /* Fonts */
   --display: Playfair Display, Palatino, serif;
