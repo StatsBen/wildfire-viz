@@ -10,14 +10,14 @@ const fireService = {
     let req = "fires/year=" + y.toString();
     let urlBase = fireService.getURLbase();
 
-    fetch(urlBase + req).then(
-      res => {
-        successCB(y, res);
-      },
-      err => {
-        errorCB("Error getting data from database!", err);
-      }
-    );
+    fetch(urlBase + req)
+      .then(res => {
+        if (res.ok) successCB(y, res);
+        else errorCB(y, res);
+      })
+      .catch(err => {
+        errorCB(err);
+      });
   }
 };
 

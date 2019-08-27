@@ -30,9 +30,12 @@ class VizContainer extends React.Component {
     this.setState({ error, loading: false });
   };
 
-  updateFires = (year, res) => {
+  updateFires = async (year, res) => {
+    let data = await res.json();
+    // console.log("Data is: ");
+    // console.log(data);
     this.setState(state => {
-      state.fires[year.toString()] = res.json();
+      state.fires[year.toString()] = data;
       state.loading = false;
       state.ready = true;
     });
