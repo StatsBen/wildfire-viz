@@ -1,8 +1,9 @@
 :root {
   /* Colors */
   --black: #050505;
-  --white: #fcfcfa;
+  --white: #fefefc;
   --charcoal: #43484d;
+  --bodycopy: #535a61;
 
   /* Fonts */
   --display: Playfair Display, Palatino, serif;
@@ -10,18 +11,17 @@
 }
 
 body {
-  font-size: 14pt;
+  font-size: 13pt;
   font-variant-ligatures: common-ligatures;
   font-family: var(--body);
   background: var(--white);
-  color: var(--charcoal);
+  color: var(--bodycopy);
 }
 
 /** Size-independent **/
 h1 {
   font-family: var(--display);
   font-weight: 700;
-  color: var(--charcoal);
 }
 
 h2 {
@@ -32,11 +32,13 @@ h2 {
 /** Large **/
 @media (min-width: 1400px) {
   h1 {
-    font-size: 3em;
+    font-size: 3.4em;
     padding: 0.5em 0 0.1em 0;
+    color: var(--charcoal);
   }
 
   p {
+    font-size: 0.9em;
     margin: 0;
     padding: 0 0 0.5em 0;
   }
@@ -45,8 +47,9 @@ h2 {
 /** Medium-Large **/
 @media (max-width: 1400px) and (min-width: 1000px) {
   h1 {
-    font-size: 2em;
+    font-size: 2.8em;
     padding: 0.5em 0 0.1em 0;
+    color: var(--charcoal);
   }
 
   p {
@@ -58,19 +61,21 @@ h2 {
 /** Medium-Small **/
 @media (max-width: 1000px) and (min-width: 850px) {
   h1 {
-    font-size: 1.8em;
+    font-size: 2.2em;
     padding: 0.5em 0 0.1em 0;
-    color: #000000;
+    color: #333333;
   }
 }
 
 /** Small **/
 @media (max-width: 850px) {
   h1 {
-    font-size: 1.5em;
+    font-size: 2em;
+    font-weight: 900;
     margin: 0;
     padding: 0.5em 0 0.1em 0;
     color: #000000;
+    letter-spacing: 0.08em;
   }
 
   p {
