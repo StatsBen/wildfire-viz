@@ -1,14 +1,14 @@
 require("dotenv");
 import React from "react";
 import ReactDOM from "react-dom";
-import MainView from "./MainView";
+import VizContainer from "./viz/VizContainer";
 require("./styles/styles.css");
 
 class App extends React.Component {
   render() {
     return (
       <div id="main">
-        <MainView />
+        <VizContainer />
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 import Error from "./Error";
 import Header from "./Header";
 import LoadingThing from "./LoadingThing";
-import { dateTools } from "./utils";
+import { dateTools } from "../utils";
 
 class MainView extends React.Component {
   constructor(props) {
