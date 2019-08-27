@@ -1,0 +1,81 @@
+:root {
+  /* Colors */
+  --black: #050505;
+  --white: #fcfcfa;
+  --charcoal: #43484d;
+
+  /* Fonts */
+  --display: Playfair Display, Palatino, serif;
+  --body: Libre Baskerville, Times, serif;
+}
+
+body {
+  font-size: 14pt;
+  font-variant-ligatures: common-ligatures;
+  font-family: var(--body);
+  background: var(--white);
+  color: var(--charcoal);
+}
+
+/** Size-independent **/
+h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--charcoal);
+}
+
+h2 {
+  font-family: var(--display);
+  font-weight: 700;
+}
+
+/** Large **/
+@media (min-width: 1400px) {
+  h1 {
+    font-size: 3em;
+    padding: 0.5em 0 0.1em 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 0 0 0.5em 0;
+  }
+}
+
+/** Medium-Large **/
+@media (max-width: 1400px) and (min-width: 1000px) {
+  h1 {
+    font-size: 2em;
+    padding: 0.5em 0 0.1em 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 0 0 0.5em 0;
+  }
+}
+
+/** Medium-Small **/
+@media (max-width: 1000px) and (min-width: 850px) {
+  h1 {
+    font-size: 1.8em;
+    padding: 0.5em 0 0.1em 0;
+    color: #000000;
+  }
+}
+
+/** Small **/
+@media (max-width: 850px) {
+  h1 {
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0.5em 0 0.1em 0;
+    color: #000000;
+  }
+
+  p {
+    margin: 0;
+    padding: 0 0 0.5em 0;
+    text-indent: 1em;
+  }
+}
