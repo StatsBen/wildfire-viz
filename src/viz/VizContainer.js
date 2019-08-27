@@ -4,7 +4,7 @@ import Header from "./Header";
 import LoadingThing from "./LoadingThing";
 import { dateTools } from "../utils";
 
-class MainView extends React.Component {
+class VizContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -69,4 +69,4 @@ class MainView extends React.Component {
   }
 }
 
-export default MainView;
+export default VizContainer;
